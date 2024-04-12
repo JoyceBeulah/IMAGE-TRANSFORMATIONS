@@ -117,18 +117,17 @@ v)Image Rotation
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-org_image = cv2.imread("obj.jpeg")
-org_image = cv2.cvtColor(org_image,cv2.COLOR_BGR2RGB)
-plt.imshow(org_image)
+input_image = cv2.imread("obj.jpg")
+input_image = cv2.cvtColor(input_image,cv2.COLOR_BGR2RGB)
+plt.axis('off')
+plt.imshow(input_image)
 plt.show()
-rows,cols,dim = org_image.shape
-M_X = np.float32([[1,0,0],[0,-1,rows],[0,0,1]])
-M_Y = np.float32([[-1,0,cols],[0,1,0],[0,0,1]])
-reflected_img_xaxis = cv2.warpPerspective(org_image,M_X,(int(cols),int(rows)))
-reflected_img_yaxis = cv2.warpPerspective(org_image,M_Y,(int(cols),int(rows)))
-plt.imshow(reflected_img_xaxis)
-plt.show()
-plt.imshow(reflected_img_yaxis)
+
+angle=np.radians(10)
+M=np.float32([[np.cos(angle),-(np.sin(angle)),0],[np.sin(angle),np.cos(angle),0],[0,0,1]])
+rotated_img = cv2.warpPerspective(input_image,M,(int(cols),int(rows)))
+
+plt.imshow(rotated_img)
 plt.show()
 ```
 
@@ -163,7 +162,7 @@ plt.show()
 ![image](https://github.com/JoyceBeulah/IMAGE-TRANSFORMATIONS/assets/118343698/a3ad8e8b-4b89-4558-8558-e19b21a72155)
 
 ### v)Image Rotation
-![image](https://github.com/JoyceBeulah/IMAGE-TRANSFORMATIONS/assets/118343698/07c6c0c1-ffbb-479d-b893-5c3659c7144e)
+![image](https://github.com/JoyceBeulah/IMAGE-TRANSFORMATIONS/assets/118343698/ad569f81-20c4-442d-acac-dd125aa8ab96)
 
 ### vi)Image Cropping
 ![image](https://github.com/JoyceBeulah/IMAGE-TRANSFORMATIONS/assets/118343698/116d8a88-563d-4f24-a343-f36ba57cfe42)
